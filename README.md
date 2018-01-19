@@ -36,6 +36,19 @@ npm install --production --registry https://registry.npm.taobao.org
 npm run install-server //安装程序会初始化数据库索引和管理员账号，管理员账号名可在 config.json 配置
 node server/app.js //启动服务器后，请访问 127.0.0.1:{config.json配置的端口}，初次运行会有个编译的过程，请耐心等候
 ```
+#### 使用
+1、前端代理配置
+```
+"proxy": {
+    "/api/": {
+      "target": "http://localhost:3000/mock/11",
+      "secure": true,
+      "changeOrigin": true
+    }
+  }
+  ```
+  说明：target中的“11”是yapi在创建项目时随机生成的项目唯一标识，请求的完整的url为http://127.0.0.1:3000/mock/11/api/getUser，在异步请求中只需要写‘/api/getUser’即可，上线时无需修改。
+
 #### 升级
 升级项目版本是非常容易的，并且不会影响已有的项目数据，只会同步 vendors 目录下的源码文件。
 
